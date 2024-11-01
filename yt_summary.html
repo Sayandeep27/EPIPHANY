@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Video Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* YouTube Summarizer Page Styles */
+        body {
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2d6a8d;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .yt-form {
+            margin-bottom: 20px;
+        }
+
+        .link-label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .link-input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .link-input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .submit-button {
+            padding: 12px 24px;
+            background: #007BFF;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #0056b3;
+            box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .summary-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .summary-text {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .home-link:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Summarize YouTube Videos</h2>
+        <p class="intro">Paste a YouTube link to generate a quick summary of the video content.</p>
+        <form method="post" class="yt-form">
+            <label for="youtube_link" class="link-label">Enter YouTube Link:</label>
+            <input type="url" name="youtube_link" placeholder="https://www.youtube.com/watch?v=..." required class="link-input">
+            <button type="submit" class="submit-button">Get Summary</button>
+        </form>
+        {% if summary %}
+            <div class="summary-section">
+                <h3>Video Summary:</h3>
+                <p class="summary-text">{{ summary }}</p>
+            </div>
+        {% endif %}
+        <a href="/" class="home-link">Return Home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* PDF Chat Page Styles */
+        body {
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2d6a8d;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .pdf-form {
+            margin-bottom: 20px;
+        }
+
+        .upload-label, .question-label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .upload-input, .question-input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .upload-input:focus, .question-input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .submit-button {
+            padding: 12px 24px;
+            background: #007BFF;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #0056b3;
+            box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .answer-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e7f3fe;
+            border-left: 5px solid #007BFF;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .answer-text {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .home-link:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Chat with Your PDF</h2>
+        <p class="intro">Upload PDF files, ask questions, and receive intelligent answers.</p>
+        <form method="post" enctype="multipart/form-data" class="pdf-form">
+            <label for="pdf_files" class="upload-label">Upload PDF Files:</label>
+            <input type="file" name="pdf_files" multiple required class="upload-input">
+            <label for="user_question" class="question-label">Ask a Question:</label>
+            <input type="text" name="user_question" placeholder="Type your question here" required class="question-input">
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+        {% if answer %}
+            <div class="answer-section">
+                <h3>Your Answer:</h3>
+                <p class="answer-text">{{ answer }}</p>
+            </div>
+        {% endif %}
+        <a href="/" class="home-link">Return Home</a>
+    </div>
+</body>
+</html>
