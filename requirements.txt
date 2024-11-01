@@ -1,0 +1,7 @@
+Flask
+PyPDF2
+langchain
+langchain-google-genai
+google-generativeai
+youtube-transcript-api
+python-dotenv
